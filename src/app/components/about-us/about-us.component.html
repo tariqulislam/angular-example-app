@@ -1,0 +1,16 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Pizza" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="example@gmail.com" formControlName="email" >
+      </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Details</mat-label>
+      <textarea matInput placeholder="Please Contact" formControlName="details"></textarea>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Save</button>
+  </form>
