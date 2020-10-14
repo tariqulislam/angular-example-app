@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from "@angular/material/button"
 import {ReactiveFormsModule} from "@angular/forms"
 import {MatInputModule} from '@angular/material/input';
+import { AppInitService } from './app-init.service';
+
+export const  appStartupServiceFactory =  (startupService: AppInitService): Function  => () => startupService.load()
 
 @NgModule({
   declarations: [
@@ -34,7 +37,14 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appStartupServiceFactory,
+      deps: [AppInitService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppInitService } from 'src/app/app-init.service';
 import { PostModel } from 'src/app/models/post/post.model';
 import { PostService } from 'src/app/services/post.service';
 
@@ -12,7 +13,9 @@ export class HomeComponent implements OnInit {
   posts = new Array<PostModel>()
   displayedColumns: string[] = ['body', 'id', 'title', 'userId'];
   JSON:any=JSON;
-  constructor(private service:PostService) { }
+  constructor(private service:PostService, private configService: AppInitService) { 
+    console.log('config service',configService.app_name)
+  }
 
   ngOnInit(): void {
     this.service.getPosts().subscribe(res => {
